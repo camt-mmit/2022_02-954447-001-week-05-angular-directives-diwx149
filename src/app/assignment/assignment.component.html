@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body>
+  <h2>Assignment</h2>
+
+  <button class="sec" type="button" (click)="addSection()"><span class="material-symbols-rounded">
+      add_circle
+    </span>Section</button>
+
+  <section *ngFor="let section of sections; let i = index">
+    <h3>
+      <button class="add" type="button" (click)="addInput(section)"><span class="material-symbols-rounded">
+          add
+        </span>Add</button>
+      Section {{i+1}}
+      <button class="del" type="button" (click)="removeSection(i)" [disabled]="sections.length ===1"> <span
+          class="material-symbols-rounded">
+          delete
+        </span></button>
+    </h3>
+    <div class="input">
+      <div *ngFor="let input of section; let j = index" class="number">
+        <label for="input-{{i}}-{{j}}" class="data">Input {{j + i}} </label>
+        <input #elem type="number" [value]="input.value" (change)="onChange(section,j,elem.valueAsNumber)">
+        <button type="button" (click)="removeInput(section,j)" [disabled]="section.length ===1">X</button>
+      </div>
+    </div>
+    <output> {{getResult(section)}}</output>
+  </section>
+
+</body>
+
+</html>
